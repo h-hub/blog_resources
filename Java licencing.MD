@@ -8,7 +8,6 @@ That's it. You don't need to know anything else.
 
 Anyway i have more to discuss here.
 Starting with Java 11, Oracle will provide JDK releases under the open source GNU General Public License v2, with the Classpath Exception (GPLv2+CPE), and this is the Open JDK.From Java 11 this will be identical to the Oracle JDK with the exception of few cosmetic and packaging differences.
-
 Those exceptions are:
 
  - -XX:+UnlockCommercialFeatures option not available in open jdk
@@ -17,6 +16,13 @@ Those exceptions are:
  - OpenJDK cryptography framework allowes either a valid signature or unsigned third party crypto provider.
  - Oracle OpenJDK builds are currently available as zip and tar.gz files.
  
+Oracle JDK and Open JDK will be fucntionally equal.We can run our applications without any changes or loosing any features.
+Oracle JDK can be used with a commercial licence while Open JDK can be used as a open source software.
+
+## Support and Updates
+
+If you are paid Oracle JDK customer you will get support and updates as per the licence. But if your are using Open JDK, you won't get updates for the past versions. You will have to use the latest JDKs as they come out or run the old JDK without updates.
+However, there are other vendor such as  Azul, IBM and Red Hat which provide 
 
 
 
