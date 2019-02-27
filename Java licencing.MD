@@ -21,9 +21,22 @@ Oracle JDK can be used with a commercial licence while Open JDK can be used as a
 
 ## Support and Updates
 
-If you are paid Oracle JDK customer you will get support and updates as per the licence. But if your are using Open JDK, you won't get updates for the past versions. You will have to use the latest JDKs as they come out or run the old JDK without updates.
-However, there are other vendor such as  Azul, IBM and Red Hat which provide 
+If you are a paid Oracle JDK customer you will get support and updates as per the licence. But if your are using Open JDK, you won't get updates for the past versions. You will have to use the latest JDKs as they come out or run the old JDK without updates.
+However, there are other vendor such as  Azul, IBM and Red Hat which provide JKD (Paid and free plans).
 
+On 08/17/2018 05:36 PM, Stephen Colebourne has said
+> OpenJDK is a community project. It's up to the community to support
+> it. In practice this means that a group of organizations and
+> individuals will maintain each OpenJDK LTS release for some period
+> (TBA for 11, but it's sure to be a *lot* longer than six months.) I am
+> certain that there will be a jdk11u project, and it will be properly
+> and professionally run. I think it's likely that I'll be leading the
+> project, but someone else may be chosen. Given that we don't know when
+> Oracle will end their support it's hard to say any more.
+
+Oracle will lead the first 6 month of the Open JDK LTS. But after wards updates will only be provided to Oracle JDK. At this point oracle will hand over the work to other providers and those vendors as i have mentioned ealier will have the options provide updates and support.
+
+These other JDKs could difere from Oracle JDKs, but Technology Compatibility Kit will ensure that binaries of those JDKs are compatible with the Java SE standard
 
 
 references:
@@ -32,4 +45,5 @@ references:
  - https://webcache.googleusercontent.com/search?q=cache:IPuWoW3U0FEJ:https://blog.jetbrains.com/idea/2018/09/using-java-11-in-production-important-things-to-know/+&cd=1&hl=en&ct=clnk&gl=sg
  - https://webcache.googleusercontent.com/search?q=cache:NeJDis-7-XYJ:https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html+&cd=1&hl=en&ct=clnk&gl=sg
  - https://developers.redhat.com/blog/2018/11/05/migrating-from-oracle-jdk-to-openjdk-on-red-hat-enterprise-linux-what-you-need-to-know/
+ - http://webcache.googleusercontent.com/search?q=cache:NL9mRCAp6p8J:mail.openjdk.java.net/pipermail/jdk-dev/2018-August/001830.html+&cd=1&hl=en&ct=clnk&gl=sg
  
