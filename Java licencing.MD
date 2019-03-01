@@ -48,6 +48,7 @@ Other vendors will take the leadership and continue to work on the relevant Open
 ## Open JDK builds and Vendors
 There are many Java SE/Open JDK vendors which provide paid or free updates and support. There are distinct certification process which run by the Java Community Process, to be completed before publishing a JDK build and if these  builds  passes the TCK, they can be recognized as "Java SE compatible".
 
+
 Few vendors of Open JDK:
  - OpenJDK builds by Oracle
  - AdoptOpenJDK builds
@@ -58,8 +59,11 @@ Few vendors of Open JDK:
  - Liberica
  - Amazon Corretto
 
+## Furthermore ...
 
+JavaFX libraries will be removed from both Oracle and OPN JDKs, starting from Java 11 and will be available as a seperate SDK. The java packager and webstart has been removed from both JDKs, starting from Java 11.
 
+As a developer with few years of experice my opinion is, Java's future is bright. All these changes are better for the future of java as well as for community. I'm hoping to explorer more into the java universe and i have much learn.
 
 references:
  - https://blogs.oracle.com/java-platform-group/oracle-jdk-releases-for-java-11-and-later
@@ -69,4 +73,4 @@ references:
  - https://developers.redhat.com/blog/2018/11/05/migrating-from-oracle-jdk-to-openjdk-on-red-hat-enterprise-linux-what-you-need-to-know/
  - http://webcache.googleusercontent.com/search?q=cache:NL9mRCAp6p8J:mail.openjdk.java.net/pipermail/jdk-dev/2018-August/001830.html+&cd=1&hl=en&ct=clnk&gl=sg
  - https://webcache.googleusercontent.com/search?q=cache:VPByXfKwkQMJ:https://blog.joda.org/2018/09/time-to-look-beyond-oracles-jdk.html+&cd=1&hl=en&ct=clnk&gl=sg
- 
+ - https://webcache.googleusercontent.com/search?q=cache:BfTNvBJO09sJ:https://www.infoq.com/news/2018/11/red-hat-openjdk-gc-Nov18+&cd=1&hl=en&ct=clnk&gl=sg
