@@ -11,16 +11,38 @@ Java can create "write once, run anywhere" applications.This is achieved by the 
 *javac* is a static compiler.It converts java code into bytecode and does very little optimization
 Java is Dynamically compiled. That means, the language is compiled to machine code while the program is being executed, not before. Not much optimizations are done at the time of compilation. JVM constantly tracks what is going on in a Java application and dynamically optimizes accordingly.
 
-#### Just-in-time compilation
+#### Just-in-time compilation :time:
 JVM has two principal components:the execution engine and the runtime.The execution engine consists of two major components: the garbage collector and the JIT compiler.
 
 Image (https://webcache.googleusercontent.com/search?q=cache:Y0otXQHhWAcJ:https://www.infoq.com/articles/OpenJDK-HotSpot-What-the-JIT+&cd=13&hl=en&ct=clnk&gl=sg)
 
 JIT compilation is an adaptive optimization for methods that are proven to be performance critical. It helps improve the perfomance of the java applications.
 
-How does it work ? At first, it identifies the performace critical methods by maintaining an invocation count. A threshold value is assgned to the invocation counter at the begining. It is decremented each time the method is called.
+#### HotSpots :fire: 
+How does JIT works ? At first, it identifies the performace critical methods by maintaining an invocation count. A threshold value (-XX:CompileThreshold) is assgned to the invocation counter at the begining. It is decremented each time the method is called.
 
-Secondly, Once the counter hits zero, JIT is triggered and those methods will be optimized. In this methods, codes which are frequently executed and have performance advantages.No time will be wasted on infrequentl code.
+Secondly, Once the counter hits zero, JIT is triggered and those methods will be optimized. In this way, codes which are frequently executed and have performance advantages will be optimized. No time will be wasted on infrequent code.
+
+What happened if JIT compiler compiles all the methods ? When JVm starts for the first time. There will be many method calls. Compiling all this could increase the start up time.
+In other words, **HotSpot interpreter** analyzes the code as it runs to detect the critical hot spots in the program. It avoids infrequent code(most of the program) and devotes more attention to the performance-critical parts of the program. This hot spot monitoring is continued dynamically as the program runs and adapts its performance on the fly to the user's needs.
+
+#### On-stack replacement (OSR)
+
+In early versions of JVM, HotSpots were identified and compiled and not replaced until the method exited and was re-entered. Compiled version was used only in the next invocation of the method. Sometimes the compiled version was never used in cases such as where all the computation is done in a single invocation of a method.
+
+**OSR** was a solution for this. OSR can swap compiled code with interpreted code(Not optimized) in the middle of a loop/method.
+  - How does this work ?
+    1. The JVM starts executing some method for the first time ever, in the interpreter, e.g. main().
+    2. That method has a long running loop, that is now being executed in the interpreter
+    3. The interpreter figures out that the method is hot and triggers a normal compilation
+    4. That compilation will be used the NEXT time this method is called, but e.g. it's main() and there is no next time
+    5. Eventually the interpreter triggers an OSR compilation.  The OSR is specialized by some bytecode it will be called at, which is typically the loop back-edge branch.
+    6. Eventually the OSR compilation completes.
+    7. At this point the interpreter jumps to the OSR code when it crosses the specialized entry bytecode – in the middle of the method.
+
+
+
+
 
 
 
@@ -54,3 +76,4 @@ Secondly, Once the counter hits zero, JIT is triggered and those methods will be
  - https://webcache.googleusercontent.com/search?q=cache:dls-AEN76T4J:https://openjdk.java.net/groups/hotspot/docs/RuntimeOverview.html+&cd=1&hl=en&ct=clnk&gl=sg
  - https://webcache.googleusercontent.com/search?q=cache:Y0otXQHhWAcJ:https://www.infoq.com/articles/OpenJDK-HotSpot-What-the-JIT+&cd=13&hl=en&ct=clnk&gl=sg
  - https://www.ibm.com/support/knowledgecenter/en/SSYKE2_8.0.0/com.ibm.java.vm.80.doc/docs/jit_overview.html
+ - https://webcache.googleusercontent.com/search?q=cache:mZ8-dPrngZAJ:https://www.h2o.ai/blog/what-the-heck-is-osr-and-why-is-it-bad-or-good/+&cd=1&hl=en&ct=clnk&gl=sg
