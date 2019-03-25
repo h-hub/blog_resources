@@ -40,8 +40,46 @@ In early versions of JVM, HotSpots were identified and compiled and not replaced
     6. Eventually the OSR compilation completes.
     7. At this point the interpreter jumps to the OSR code when it crosses the specialized entry bytecode – in the middle of the method.
 
+#### Method Inlining
 
+Virtual method invocations is an important optimization bottleneck. What is Virtual method invocations ?? JVM calls the appropriate method for the object that is referred to in each variable. It does not call the method that is defined by the variable's type. 
+These method calles require [dynamic dispatching](https://en.wikipedia.org/wiki/Dynamic_dispatch) and that make them much expensive.
 
+Virtual method invocation example:
+```java
+public class TestBikes {
+  public static void main(String[] args){
+    Bicycle bike01, bike02, bike03; //Bicycle, MountainBike and RoadBike extend Bicycle class 
+
+    bike01 = new Bicycle();
+    bike02 = new MountainBike();
+    bike03 = new RoadBike();
+
+    bike01.printDescription(); //A method in Bicycle class will be called
+    bike02.printDescription(); //A method in MountainBike class will be called
+    bike03.printDescription(); //A method in RoadBike class will be called
+  }
+}
+```
+Once JVM has identified hotspots, it performes extensive method inlining together with other optimizations. Benefits of it are,
+1. Reduces the dynamic frequency of method invocations and reduce the time it takes for the method invocations.
+2. Produces much larger blocks of code for the optimizer to work on. This larger code blocks could lead to even more optimizations.
+
+Method Inlining example:
+```java
+private int add4(int x1, int x2, int x3, int x4) {
+    return add2(x1, x2) + add2(x3, x4);
+}
+ 
+private int add2(int x1, int x2) {
+    return x1 + x2;
+}
+
+//How add4 method would look like after optimization
+private int add4(int x1, int x2, int x3, int x4) {
+    return x1 + x2 + x3 + x4;
+}
+```
 
 
 
@@ -77,3 +115,5 @@ In early versions of JVM, HotSpots were identified and compiled and not replaced
  - https://webcache.googleusercontent.com/search?q=cache:Y0otXQHhWAcJ:https://www.infoq.com/articles/OpenJDK-HotSpot-What-the-JIT+&cd=13&hl=en&ct=clnk&gl=sg
  - https://www.ibm.com/support/knowledgecenter/en/SSYKE2_8.0.0/com.ibm.java.vm.80.doc/docs/jit_overview.html
  - https://webcache.googleusercontent.com/search?q=cache:mZ8-dPrngZAJ:https://www.h2o.ai/blog/what-the-heck-is-osr-and-why-is-it-bad-or-good/+&cd=1&hl=en&ct=clnk&gl=sg
+ - https://dzone.com/articles/how-aggressive-method-inlining
+ - https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html
