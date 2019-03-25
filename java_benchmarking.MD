@@ -80,8 +80,46 @@ private int add4(int x1, int x2, int x3, int x4) {
     return x1 + x2 + x3 + x4;
 }
 ```
+#### Dynamic Deoptimization
+Java can change the pattern of method invocation at runtime and load classes dynamically.
+Dynamic class loading significantly complicates Method Inlining. What is Dynamic class loading ? It allowes to compile the application without all the dependencies. Required classes can be loaded later.
 
+Examples:
+1. JDBC drivers.
+2. plugins.
+3. Frameworks and containers.
 
+If you see code with **Class.forName()**, then it is a case where classes are loaded dynamically.
+
+Example:
+```java
+public class MainClass {
+
+  public static void main(String[] args){
+
+    ClassLoader classLoader = MainClass.class.getClassLoader();
+
+    try {
+        Class aClass = classLoader.loadClass("com.harsha.MyClass");
+        System.out.println("aClass.getName() = " + aClass.getName());
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    }
+
+}
+```
+Dynamically loaded classed could load new code into the programm. These new codes and methods will to needed to be inlined again. Inorder to do that, JVM needs to dynamically deoptimize and optimize again.
+
+Check below code fragement:
+```java
+Foo foo = getFoo();
+foo.doSomething();
+```
+Before predicting the output of above code we need to think of several things.
+1. Will gteFoo() return an instance of Foo?
+2. Will it return an instance of a subclass of Foo?
+3. Is Foo a final class ?
+4. Is doSomething a final method ?
 
 
 
