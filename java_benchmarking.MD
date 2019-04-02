@@ -65,21 +65,7 @@ Once JVM has identified hotspots, it performes extensive method inlining togethe
 1. Reduces the dynamic frequency of method invocations and reduce the time it takes for the method invocations.
 2. Produces much larger blocks of code for the optimizer to work on. This larger code blocks could lead to even more optimizations.
 
-Method Inlining example:
-```java
-private int add4(int x1, int x2, int x3, int x4) {
-    return add2(x1, x2) + add2(x3, x4);
-}
- 
-private int add2(int x1, int x2) {
-    return x1 + x2;
-}
 
-//How add4 method would look like after optimization
-private int add4(int x1, int x2, int x3, int x4) {
-    return x1 + x2 + x3 + x4;
-}
-```
 #### Dynamic Deoptimization
 Java can change the pattern of method invocation at runtime and load classes dynamically.
 Dynamic class loading significantly complicates Method Inlining. What is Dynamic class loading ? It allowes to compile the application without all the dependencies. Required classes can be loaded later.
@@ -116,10 +102,33 @@ Foo foo = getFoo();
 foo.doSomething();
 ```
 Before predicting the output of above code we need to think of several things.
-1. Will gteFoo() return an instance of Foo?
-2. Will it return an instance of a subclass of Foo?
+1. Will getFoo() return an instance of Foo?
+2. Will getFoo() return an instance of a subclass of Foo?
 3. Is Foo a final class ?
-4. Is doSomething a final method ?
+4. Is doSomething() a final method ?
+
+Assuming that there are no loaded classes that extend foo and doSomething is a final method,JVM can do optimizations based on these information. But if a class that extends foo is loaded dynamically, JVM can figure this and optimize again.
+
+#### Java HotSpot Client & Server compiler
+
+Hotspot JVM has two compilers; Client and Server. Client compiler which is enabled by default is optimized to use less memory and startup time. Optimizations are not complex and compiles with less time. It is focused on local code quality and does very few global optimizations
+
+Server compiler is for long-running server applications. It is optimized to gain the maximum peak operating speed. Server compiler does optimizations such as dead code elimination, loop invariant hoisting, common subexpression elimination, constant propagation, global value numbering, global code motion, and null-check and range-check elimination. Eventough the time it takes to compile is high, execution time for compiled code is less. 
+
+We can select the suitable compiler using a switch when starting the JVM.
+
+#### Other
+
+JVM (HotSpot) supports several advanced optimization techniques in order gain  hight performence. I have explained sevral and mentioned few as well. Some of these optimization include;
+ - Fast instanceof/checkcast
+ - Range check elimination
+ - Loop unrolling
+ - Feedback-directed optimizations
+
+We can discuss these in another time.
+
+
+
 
 
 
