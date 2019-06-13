@@ -53,11 +53,8 @@ class OuterClass {
 }
 ```
 ### Why Use Nested Classes ?
-1. logically grouping classes that are only used in one place. The Map interface in java provides a small nested interface called Map.Entry, the type of the elements in this Set. Since the entry interface will only be used by the map interface, it is logical to keep it as a nested interface. Entry object cannot exist without a map.
-https://docs.oracle.com/javase/tutorial/collections/interfaces/map.html
-
-Set<Map.Entry<K,V>> entrySet() : Returns a Set view of the mappings contained in this map. This set contains Map.Entry objects.
-https://docs.oracle.com/javase/8/docs/api/java/util/Map.html#entrySet--
+1. logically grouping classes that are only used in one place. The Map interface in java provides a small nested interface called Map.Entry, the type of the elements in this Set. Since the entry interface will only be used by the map interface, it is logical to keep it as a nested interface. Entry object cannot exist without a map(https://docs.oracle.com/javase/tutorial/collections/interfaces/map.html). Set<Map.Entry<K,V>> entrySet() : Returns a Set view of the mappings contained in this map. This set contains Map.Entry objects (
+https://docs.oracle.com/javase/8/docs/api/java/util/Map.html#entrySet--)
 
 ```java
 import java.util.*;
