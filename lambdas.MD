@@ -121,3 +121,6 @@ public class HashExample {
 ## Anonymous Classes
 They enable you to declare and instantiate a class at the same time.
 
+References:
+https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
+https://www.javaworld.com/article/2077044/a-look-at-inner-classes.html
