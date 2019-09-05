@@ -104,10 +104,38 @@ Java has many immutable classes, including String, the boxed primitive classes, 
    - public static final BigInteger ONE − The BigInteger constant one.
    - public static final BigInteger TEN − The BigInteger constant ten.
    - public static final BigInteger ZERO − The BigInteger constant zero.
- - 
+ - Immutable objects can share their internals as well: negate method in BigInteger class uses the same array which contains the magnitute when creating the new BigInteger. ```java //sample code ```
+ - Immutable objects make great building blocks for other objects: Immutable objects make great map keys and set elements. What happens if the keys are mutable? check below code.
+ ```java
+MyKey key = new MyKey("tic"); //assume hashCode=1234
+myHashMap.put(key, "tac");
+
+// Below code will change the key hashCode() and equals()
+// but it's location is not changed.
+key.setName("toe"); //assume new hashCode=7890
+
+//below will return null, because HashMap will try to look for key
+//in the same index as it was stored but since key is mutated,
+//there will be no match and it will return null.
+myHashMap.get(new MyKey("tic"));
+```
+ - Immutable objects provide failure atomicity for free: A failed method invocation should leave the object in the state that it was in prior to the invocation. For example, substring(int) method of String class will create a partical copy of the string and return it, instead of changing the original string.
+ ```java
+String str = "www.harshajayamanna.com";
+System.out.println("First 4 char String: " + str.substring(0, 4));
+//output : First 4 char String: www.
+```
+---
+> ***Major disadvantage of immutable objects is that they require a seperate object for each operation.***
+
+Creating these objects can be costly. Classes should be immutable unless there's a verry good reason to make them mutable. If a class cannot be made immutable, limit its mutability as much as possible.
+
+Read Effective Java 3 by Joshua Bloch to get more information. I highly recomnend it.
+
 ## Reference:
  - https://stackoverflow.com/questions/8798403/string-is-immutable-what-exactly-is-the-meaning
  - https://www.mkyong.com/java/java-mutable-and-immutable-objects/
  - https://docs.oracle.com/javase/tutorial/java/data/strings.html
  - https://webcache.googleusercontent.com/search?q=cache:6yw4ZXFgUDQJ:https://www.baeldung.com/java-thread-safety+&cd=12&hl=en&ct=clnk&gl=sg
  - https://www.oracle.com/technetwork/java/seccodeguide-139067.html#6
+ - https://www.amazon.com/Effective-Java-Joshua-Bloch-ebook/dp/B078H61SCH
