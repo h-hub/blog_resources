@@ -1,4 +1,4 @@
-# Managing sensitive data in a repository
+# Managing sensitive data in a git repository
 
 Commiting sensitive data, such as a password or SSH key into a Git repository is something that we must not do. This could put your entire application or bussiness in harms.
 
@@ -34,6 +34,14 @@ This is an opensource tool which provides a faster, simpler ways of removing unw
 7. Contact GitHub to remove cached views and references to the sensitive data in pull requests.
 8. Collaborators must rebase, not merge, any branches they created off of your old (tainted) repository history.
 9. Once you are confident that there are no side affects from this process, you can force all objects in your local repository to be dereferenced and garbage collected
+
+## Avoiding sensitive data commits in future
+
+I belive removing the sensitive data and history from git in tidious and it is better if we can avoid these mistakes somehow. There are more thins we can do to avoid these mistakes.
+ - Use a visual program like GitHub Desktop to easily see and manage the files you are going to commit.
+ - Avoid `git add .` and `git commit -a` and instead use `git add filename` and `git rm filename`.
+ - Use git add --interactive to individually review and stage changes within each file.
+ - Use git diff --cached to review the changes that you have staged for commit.
 
 ## Reference
 - http://help.github.com/en/articles/removing-sensitive-data-from-a-repository#purging-a-file-from-your-repositorys-history
