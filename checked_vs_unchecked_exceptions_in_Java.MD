@@ -42,6 +42,23 @@ These are exceptional conditions that are external and cannot be recovered from.
 These are exceptional conditions that are internal to the application, and that the application usually cannot anticipate or recover from.
 > RuntimeExceptions occur due to programming bugs, such as logic errors or improper use of an API.
 
+Example: If a logic error causes a null to be passed to the constructor which does not accepts null values, the constructor will throw NullPointerException. Runtime exceptions are not subject to the Catch or Specify Requirement. You must not catch or handle RuntimeExceptions.
+
+RuntimeExceptions send output to System.err. We can configure log4j to log the System.err output properly. This enables us to identify and fix bugs/errors in the code.
+
+https://www.mkyong.com/logging/log4j-log4j-properties-examples/
+
+---
+
+> All exceptions are checked exceptions, except for those indicated by Error, RuntimeException, and their subclasses.
+
+> Runtime exceptions are those indicated by RuntimeException and its subclasses.
+
+
+## What is the Controversy ?
+
+ - According to Oracle: You should not write code which throws only unchecked exceptions, eventhough Java does not require methods to catch or to specify unchecked exceptions. 
+
 
 ## References:
 - https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html
