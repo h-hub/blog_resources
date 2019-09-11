@@ -57,10 +57,20 @@ https://www.mkyong.com/logging/log4j-log4j-properties-examples/
 
 ## What is the Controversy ?
 
- - According to Oracle: You should not write code which throws only unchecked exceptions, eventhough Java does not require methods to catch or to specify unchecked exceptions. 
+**According to Oracle:** You should not write code which throws only unchecked exceptions or make all exceptions inherit from RuntimeException, eventhough Java does not require methods to catch or to specify unchecked exceptions. If you do this, you will be ignoring the catch or specify requirement and could cause problem to the users of your class.
+ 
+Any Exception that can be thrown by a method (we throw only checked expcetion) is part of the method's public programming interface. Users of the method should know about these exception inorder for them to choose what to with those.
 
+Why shouldn't you Specify or throw Runtime exceptions in a method ?  Runtime exceptions represent problems that are the result of a programming problem. Users of the class wonnt be able to recover from it.Runtime exceptions could occur anywhere and there can be many. Specifying Runtime exceptions in a method could reduce the clarity.
+
+The summary is: If a client can reasonably be expected to recover from an exception, make it a checked exception. If a client cannot do anything to recover from the exception, make it an unchecked exception.
+
+**According to Brian Goetz:** In IBM article, firstly, Brian mentioned the same thing that was in the oracle website and also he has pointed out the content regarding the exceptions from the *Effective Java: Programming Language Guide*
 
 ## References:
 - https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html
 - https://www.javaworld.com/article/3142626/are-checked-exceptions-good-or-bad.html?page=2
 - https://stackoverflow.com/questions/613954/the-case-against-checked-exceptions
+- https://www.ibm.com/developerworks/library/j-jtp05254/index.html
+- http://webcache.googleusercontent.com/search?q=cache:lsZlKrJdRwkJ:briangoetz.blogspot.com/2007/06/remove-checked-exceptions.html+&cd=15&hl=en&ct=clnk&gl=sg
+- https://webcache.googleusercontent.com/search?q=cache:z_D9XOwyUTMJ:https://www.theserverside.com/discussions/thread/21538.html+&cd=18&hl=en&ct=clnk&gl=sg
