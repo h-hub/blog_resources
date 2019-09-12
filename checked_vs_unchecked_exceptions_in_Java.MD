@@ -65,7 +65,19 @@ Why shouldn't you Specify or throw Runtime exceptions in a method ?  Runtime exc
 
 The summary is: If a client can reasonably be expected to recover from an exception, make it a checked exception. If a client cannot do anything to recover from the exception, make it an unchecked exception.
 
-**According to Brian Goetz:** In IBM article, firstly, Brian mentioned the same thing that was in the oracle website and also he has pointed out the content regarding the exceptions from the *Effective Java: Programming Language Guide*
+**According to Brian Goetz:** In an IBM article, firstly, Brian mentioned the same thing that was in the oracle website and also he has pointed out few items from the *Effective Java: Programming Language Guide*.I'll smmarize his what he has said in the next few paragraphs.
+
+Bruce Eckel and Rod Johnson have concluded that exclusive use of checked exceptions is not a good idea. While Eckel suggests all exceptions should be unchecked, Rod Johnson suggests the orthodox preference for checked exceptions is excessive. They point out the properties, implementation and widespread misuse of checked exceptions.
+
+He has shared some of the critisms of Checked exceptions,
+
+Exposing the implementation details inappropriately: Here he talks how Exception chaining can be used to throw a more appropriate exception. Developers throw the details of the underlying failure without throwinf any meaningfull exception which could explain the implementation and what has gone wrong. An example would be throwing `SQLException` when you can throw `NoSuchUserException` which could explain what exactly gone wrong. 
+```java
+//example code
+```
+
+Unstable method signatures: 
+
 
 ## References:
 - https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html
@@ -74,3 +86,4 @@ The summary is: If a client can reasonably be expected to recover from an except
 - https://www.ibm.com/developerworks/library/j-jtp05254/index.html
 - http://webcache.googleusercontent.com/search?q=cache:lsZlKrJdRwkJ:briangoetz.blogspot.com/2007/06/remove-checked-exceptions.html+&cd=15&hl=en&ct=clnk&gl=sg
 - https://webcache.googleusercontent.com/search?q=cache:z_D9XOwyUTMJ:https://www.theserverside.com/discussions/thread/21538.html+&cd=18&hl=en&ct=clnk&gl=sg
+- https://webcache.googleusercontent.com/search?q=cache:UazO-1DUo0QJ:https://www.artima.com/intv/solid.html+&cd=1&hl=en&ct=clnk&gl=sg
