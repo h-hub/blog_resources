@@ -1,4 +1,8 @@
 # Introduction to Cryptography
+>"Security is not obtained through obscurity." 
+
+With this thought in mind lets not dive, but take a swim in the Cryptography field. Because Programmers must know how Cryptography works.
+
 
 > Cryptography, is the actual securing, control, and identification of digital data.
 
@@ -76,8 +80,59 @@ For Public-Key Encryption: Breaking the algorithm usually means acquiring the sh
 
 ### How to break ?
 
-Symmetric-Key Encryption: Try every key within the full algorithm until the right key is found.
-Public-Key Encryption: 
+ - Symmetric-Key Encryption: Try every key within the full algorithm until the right key is found.
+ - Public-Key Encryption: Private key can be derived using published, using complex, mathematical calculations.
+
+Manually finding the key to break an algorithm is called a brute force attack. A brute force attack is trying to find the username, password or a key using a trial and error approach. Using this method, attackers are trying to guess the credentials correctly eventually.
+
+### Strength
+
+> The key strength of an algorithm is determined by finding the fastest method to break the algorithm and comparing it to a brute force attack.
+ - Symmetric-Key Encryption: Encryption strength is often described in terms of the size or length of the keys used to perform the encryption.
+   - 128-bit keys with the RC4 symmetric-key cipher supported by SSL provide significantly better cryptographic protection than 40-bit keys used with the same cipher.
+   - 128-bit RC4 encryption is 3 x 1026 times stronger than 40-bit RC4 encryption.
+   
+ - Public-Key Encryption: Requires different key lengths to achieve the same level of encryption strength as a symmetric-key cipher.
+   - RSA public-key encryption cipher must have at least 1024 bits key to be considered strong.
+   {more about RSA}
+ 
+ 
+An encryption key is considered full strength if the best known attack to break the key is no faster than a brute force attempt to test every key possibility.
+
+## Digital Signatures
+
+A digital signature is similar to a handwritten signature and is as legally binding as a handwritten signature. Most importantly digital signatures provides a high degree of nonrepudiation.One cannot deny having signed the data.
+
+I have devided this topic into small sections for the ease of understanding.
+
+### One-way functions
+It is a lot harder to get the toothpaste back in the tube than it was to get it out. It is a lot easier to multiply together some large primes than it is to factor the product.
+
+>One-way functions are functions that are computationally easy to compute, but computationally infeasible to reverse.
+
+Cryptographic one-way functions are function that can perform in milliseconds on computers, but believe it would take these same computers millions of years to reverse.
+
+### Cryptographic hashes
+
+A hash is similar to a one-way function, but rather than being a total function (one whose inverse is also a function), a hash takes a long message and produces a comparatively short output.
+
+Example : Errorchecking codes (ECC), such as CRC32 (32 bits)
+
+**Cryptographic hash** is (believed to be) computationally infeasible to find a message that produces a given hash that means the content of the hashed message cannot be deduced from the hash. The out put is 128 bits or longer. The value of the hash is unique for the hashed data. Any change in the data could alter the hash.
+
+       message/data >>>> hashing >>>>>>> hashed(message/data) >>>>> X >>>>> message/data
+
+Other names for Cryptographic hashes : "message digests","fingerprints", "cryptographic checksums", or "message integrity checks.
+
+### What is a Digital Signature ?
+
+>Firstly, a one-way hash of the data is created, then uses the private key to encrypt the hash. The encrypted hash, along with other information such as the hashing algorithm, is known as a digital signature.
+
+![alt text](https://access.redhat.com/documentation/en-US/Red_Hat_Certificate_System/8.1/html/Deploy_and_Install_Guide/images/04digsgn.png
+)
+
+
+
 
 
 
@@ -94,3 +149,4 @@ https://www.ibm.com/developerworks/tivoli/tutorials/s-crypto2/s-crypto2-pdf.pdf
 https://www.ibm.com/developerworks/tivoli/tutorials/s-crypto3/s-crypto3-pdf.pdf
 https://docs.oracle.com/cd/E13214_01/wli/docs70/b2bsecur/nonrep.htm
 https://access.redhat.com/documentation/en-US/Red_Hat_Certificate_System/8.1/html/Deploy_and_Install_Guide/Introduction_to_Public_Key_Cryptography-Certificates_and_Authentication.html
+https://www.kaspersky.com/resource-center/definitions/brute-force-attack
