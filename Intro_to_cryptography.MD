@@ -128,8 +128,27 @@ Other names for Cryptographic hashes : "message digests","fingerprints", "crypto
 
 >Firstly, a one-way hash of the data is created, then uses the private key to encrypt the hash. The encrypted hash, along with other information such as the hashing algorithm, is known as a digital signature.
 
+Below image explains it properly.
+
+
 ![alt text](https://access.redhat.com/documentation/en-US/Red_Hat_Certificate_System/8.1/html/Deploy_and_Install_Guide/images/04digsgn.png
 )
+
+
+1. Original data is hashed using a hashing algorithm.
+2. Hash is encrypted using a private key.
+3. Data is transfered to the receiver (Digital Signature = encrypted hash + hashing algorithm).
+4. Receiver uses the public key to decrypt the hash.
+5. Then uses the same hashing algorithm to generate a hash.
+6. Then compares the new hash against the original hash.
+7. If matching, the data has not been changed.
+
+Two hashes are matching means,receiver can confirm that public key corresponds to the private key which used during the create the digital signature. But this is not enought to identify the user. I'll dicuss this in the next section(Certificates and Authentication).
+
+## Certificates and Authentication
+>A certificate is an electronic document used to identify an individual, a server, a company, or other entity and to associate that identity with a public key.
+
+A certificate is like passport which can be used to proove our identity.Public-key cryptography uses certificates to prohibit impersonation.
 
 
 
