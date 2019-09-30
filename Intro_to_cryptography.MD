@@ -148,14 +148,38 @@ Two hashes are matching means,receiver can confirm that public key corresponds t
 ## Certificates and Authentication
 >A certificate is an electronic document used to identify an individual, a server, a company, or other entity and to associate that identity with a public key.
 
-A certificate is like passport which can be used to proove our identity.Public-key cryptography uses certificates to prohibit impersonation.
+A certificate is like passport which can be used to proove our identity.Public-key cryptography uses certificates to prohibit impersonation.Only the public key certified by the certificate will work with the corresponding private key possessed by the entity identified by the certificate
 
+**Certificate authorities (CAs)** validate identities and issue certificates.Before issuing a certificate, a CA must confirm the user's identity with its standard verification procedures.
 
+Types of Certificate authorities:
+- Independent third parties.
+- Organizations with their own certificate-issuing server.
 
+Validation method of the Identity depends on,
+- The policies of the CA.
+- The type of the certificate.
 
+A certificate includes following data:
+- public key (This is boud to the name of the entity).
+- Name of the entity it identifies (name of an employee or a server).
+- Expiration date.
+- Name of the CA.
+- Serial number.
+- Digital signature of the issuing CA (It allows the certificate to serve as a valid credential for users who know and trust the CA but do not know the entity identified by the certificate.).
 
+Since we got an idea about Certifications, now it is time to see how this can be used to Authenticate users.
 
+There are many ways to handle authentication and Certification is one of them. As Engineers we login to many websites such as github, gmail and twitter. We(clients) are authenticated by the server inorder to give us access to the system (github, gmail or twitter).
+Client authentication is an essential element of network security within most intranets or extranets.
 
+There are two types of client authentication,
+- Password-based authentication.
+- Certificate-based authentication.
+
+Certificate-based authentication may not be familiar to most while Password-based authentication is familiar to most of us. Password-based authentication is easier to understand. It authenticate clients by using a recognized name and a password before granting access to the server.
+
+![alt text](https://access.redhat.com/documentation/en-US/Red_Hat_Certificate_System/8.1/html/Deploy_and_Install_Guide/images/01pswd.png)
 
 
 
